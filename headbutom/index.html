@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: lightgrey;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        .top-header {
+            background: linear-gradient(135deg, #fc3131 0%, #ff0000 100%);
+            padding: 20px 40px;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 28px;
+        }
+        
+        .logo p {
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .nav-menu a:hover {
+            color: #c3ff00;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            min-height: 400px;
+        }
+        
+        .category-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .category-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            display: block;
+            border-left: 4px solid #fc3131;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .category-card h3 {
+            margin-bottom: 10px;
+            color: #fc3131;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fc3131;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #fc3131, #ff6b6b);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .feedback-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #fc3131, #ff0000);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252,49,49,0.3);
+        }
+
+        .tips-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .tips-list li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .tips-list h4 {
+            color: #fc3131;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #fc3131, transparent);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-menu a {
+                margin: 10px 15px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>Помощник по YouTube</h1>
+                <p>Droke любит вас</p>
+            </div>
+            <div class="nav-menu">
+                <a onclick="showHome()">Главная</a>
+                <a onclick="showCategories()">Категории</a>
+                <a onclick="showAbout()">О нас</a>
+                <a onclick="showContact()">написать автору</a>
+            </div>
+        </div>
+    </div>
+   
+    <div class="content" id="content">
+        <h2>Добро пожаловать!</h2>
+        <p>Если вы профи, то выйдите пожалуйста!</p>
+    </div>
+   
+    <script>
+        window.showHome = function() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <h2>Добро пожаловать!</h2>
+                <p>Если вы профи, то выйдите пожалуйста!</p>
+            `;
+        };
+
+        window.showCategories = function() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <h2>Все категории</h2>
+                <p>Выберите интересующий вас раздел:</p>
+                <div class="category-list">
+                    <div class="category-card" onclick="showCategoryInfo('Советы')">
+                        <h3>Советы</h3>
+                        <p>Полезные советы для начинающих блогеров.</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryInfo('Продвижение канала')">
+                        <h3>Продвижение канала</h3>
+                        <p>Методы продвижения и SEO оптимизация.</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryInfo('Оборудование')">
+                        <h3>Оборудование</h3>
+                        <p>Камеры, микрофоны, компьютеры и освещение.</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryInfo('Монетизация')">
+                        <h3>Монетизация</h3>
+                        <p>Заработок на YouTube и дополнительные источники дохода.</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryInfo('Монтаж')">
+                        <h3>Монтаж</h3>
+                        <p>Лайфхаки по монтажу видео и лучшие программы.</p>
+                    </div>
+                    <div class="category-card" onclick="showCategoryInfo('Общение с аудиторией')">
+                        <h3>Общение с аудиторией</h3>
+                        <p>Комментарии, стримы, сообщества и обратная связь.</p>
+                    </div>
+                </div>
+                <br>
+                <a class="back-link" onclick="showHome()">← Вернуться на главную</a>
+            `;
+        };
+
+        window.showCategoryInfo = function(categoryName) {
+            const contentDiv = document.getElementById('content');
+            
+            let tipsContent = '';
+            
+            if (categoryName === 'Советы') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Полезные советы для начинающих:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Начните с определения своей ниши - выберите тему, в которой вы разбираетесь и которая вам интересна.</li>
+                            <li><strong>Совет 2:</strong> Создайте качественную шапку канала и аватарку - это первое, что видят зрители.</li>
+                            <li><strong>Совет 3:</strong> Снимайте первые 30 секунд видео самыми интересными, чтобы удержать зрителя.</li>
+                            <li><strong>Совет 4:</strong> Используйте призывы к действию (лайк, подписка, комментарий) в каждом видео.</li>
+                            <li><strong>Совет 5:</strong> Анализируйте статистику канала, чтобы понимать, что работает лучше.</li>
+                        </ul>
+                        <hr>
+                        <h4>Почему это важно:</h4>
+                        <p>Первые шаги на YouTube - самые важные. Правильный старт поможет быстрее набрать аудиторию и избежать типичных ошибок новичков.</p>
+                    </div>
+                `;
+            } else if (categoryName === 'Продвижение канала') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Советы по продвижению канала:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Оптимизируйте заголовки и описания видео под ключевые слова для поиска.</li>
+                            <li><strong>Совет 2:</strong> Создавайте привлекательные миниатюры (thumbnail) - они увеличивают кликабельность на 50%.</li>
+                            <li><strong>Совет 3:</strong> Продвигайте видео в социальных сетях (Telegram, TikTok, Instagram, VK).</li>
+                            <li><strong>Совет 4:</strong> Сотрудничайте с другими блогерами для обмена аудиторией.</li>
+                            <li><strong>Совет 5:</strong> Используйте плейлисты - они увеличивают время просмотра на канале.</li>
+                        </ul>
+                        <hr>
+                        <h4>SEO для YouTube:</h4>
+                        <p>Используйте сервисы для подбора ключевых слов (например, Google Trends, YouTube Analytics). Добавляйте теги и хештеги к видео.</p>
+                    </div>
+                `;
+            } else if (categoryName === 'Оборудование') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Советы по выбору оборудования:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Начинайте с телефона - современные смартфоны снимают отличное видео в 4K.</li>
+                            <li><strong>Совет 2:</strong> Купите петличный микрофон для чистой записи голоса (от 1000 рублей).</li>
+                            <li><strong>Совет 3:</strong> Используйте естественное освещение или кольцевую лампу для качественного света.</li>
+                            <li><strong>Совет 4:</strong> Стабилизатор (gimbal) сделает видео плавным без тряски.</li>
+                            <li><strong>Совет 5:</strong> Для стримов нужен мощный компьютер с хорошим интернетом.</li>
+                        </ul>
+                        <hr>
+                        <h4>Бюджетные варианты:</h4>
+                        <p>Камера Logitech C922 (для стримов), микрофон Fifine K669B, софтбокс для освещения - лучший стартовый набор за 10-15 тысяч рублей.</p>
+                    </div>
+                `;
+            } else if (categoryName === 'Монетизация') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Советы по заработку на YouTube:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Для монетизации нужно 1000 подписчиков и 4000 часов просмотров за год.</li>
+                            <li><strong>Совет 2:</strong> Подключите AdSense для получения дохода от рекламы.</li>
+                            <li><strong>Совет 3:</strong> Используйте партнёрские ссылки (AliExpress, Amazon, Ozon) в описании видео.</li>
+                            <li><strong>Совет 4:</strong> Принимайте донаты через DonationAlerts или Boosty.</li>
+                            <li><strong>Совет 5:</strong> Продавайте собственные товары (мерч, курсы, консультации).</li>
+                        </ul>
+                        <hr>
+                        <h4>Сколько можно заработать:</h4>
+                        <p>Начинающие блогеры зарабатывают 50-500$ в месяц. При 100 000 просмотров доход может составлять 300-2000$ в зависимости от тематики.</p>
+                    </div>
+                `;
+            } else if (categoryName === 'Монтаж') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Советы по монтажу видео:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Начинайте с бесплатных программ: DaVinci Resolve (профессиональная) или CapCut (простая).</li>
+                            <li><strong>Совет 2:</strong> Добавляйте субтитры - многие смотрят видео без звука.</li>
+                            <li><strong>Совет 3:</strong> Используйте переходы fade in/out для плавного начала и конца видео.</li>
+                            <li><strong>Совет 4:</strong> Убирайте паузы и повторы - динамичный монтаж удерживает внимание.</li>
+                            <li><strong>Совет 5:</strong> Добавляйте фоновую музыку без авторских прав (YouTube Audio Library).</li>
+                        </ul>
+                        <hr>
+                        <h4>Полезные ресурсы:</h4>
+                        <p>Где брать материалы: Pexels (видео), Pixabay (эффекты), Epidemic Sound (музыка по подписке).</p>
+                    </div>
+                `;
+            } else if (categoryName === 'Общение с аудиторией') {
+                tipsContent = `
+                    <div class="tips-list">
+                        <h3>Советы по общению с подписчиками:</h3>
+                        <ul>
+                            <li><strong>Совет 1:</strong> Отвечайте на комментарии в первые часы после выхода видео - это повышает активность.</li>
+                            <li><strong>Совет 2:</strong> Проводите прямые эфиры (стримы) для живого общения с аудиторией.</li>
+                            <li><strong>Совет 3:</strong> Создайте Telegram или Discord канал для самого активного сообщества.</li>
+                            <li><strong>Совет 4:</strong> Спрашивайте мнение зрителей в конце видео и опросах в Community вкладке.</li>
+                            <li><strong>Совет 5:</strong> Не игнорируйте критику - конструктивные замечания помогают расти.</li>
+                        </ul>
+                        <hr>
+                        <h4>Как справляться с негативом:</h4>
+                        <p>Не принимайте хейт близко к сердцу. Удаляйте откровенные оскорбления, но на адекватную критику отвечайте вежливо.</p>
+                    </div>
+                `;
+            }
+            
+            contentDiv.innerHTML = `
+                <h2>${categoryName}</h2>
+                <p>Вы выбрали раздел <strong>${categoryName}</strong>.</p>
+                ${tipsContent}
+                <br>
+                <a class="back-link" onclick="showCategories()">← Назад к категориям</a>
+                <a class="back-link" onclick="showHome()">На главную</a>
+            `;
+        };
+
+        window.showAbout = function() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <h2>О мне</h2>
+                <p><strong>Помощник по YouTube</strong> — это проект, созданный для поддержки начинающих.</p>
+                <h3>Тема сайта</h3>
+                <p>Помочь каждому человеку начать свой путь на YouTube.</p>
+
+                <h3>Что такое Droke:</h3>
+                <ul>
+                    <li>Начинающий программист сайтов</li>
+                    <li>Создатель этого проекта</li>
+                </ul>
+
+                <h3>Обо мне</h3>
+                <p>Droke - начинающий программист, к сожалению с маленьким стажем.</p>
+                
+                <br>
+                <a class="back-link" onclick="showHome()">← Вернуться на главную</a>
+            `;
+        };
+
+        window.showContact = function() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <h2>Написать автору</h2>
+                <p>Есть вопросы, предложения или хотите поделиться своим опытом? Напишите мне!</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <div><strong>Email:</strong> t6764646@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <div><strong>Telegram:</strong> Droke_star</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"></div>
+                        <div><strong>Телефон:</strong> +7 (924) 626-25-09</div>
+                    </div>
+                </div>
+
+                <h3>Или отправьте сообщение через форму:</h3>
+                <div class="feedback-form">
+                    <div class="form-group">
+                        <label>Ваше имя:</label>
+                        <input type="text" id="userName" placeholder="Введите ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email для ответа:</label>
+                        <input type="email" id="userEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Сообщение:</label>
+                        <textarea id="userMessage" placeholder="Напишите ваш вопрос или предложение..."></textarea>
+                    </div>
+                    <button class="submit-btn" onclick="sendMessage()">Отправить сообщение</button>
+                </div>
+                
+                <br><br>
+                <a class="back-link" onclick="showHome()">← Вернуться на главную</a>
+            `;
+        };
+
+        window.sendMessage = function() {
+            const name = document.getElementById('userName')?.value;
+            const email = document.getElementById('userEmail')?.value;
+            const message = document.getElementById('userMessage')?.value;
+            
+            if (!name || !email || !message) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+            
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Пожалуйста, введите корректный email!');
+                return;
+            }
+            
+            alert(`Спасибо, ${name}! Ваше сообщение отправлено.${email}`);
+            
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <h2>Спасибо за обращение!</h2>
+                <p>Ваше сообщение успешно отправлено.</p>
+                <br>
+                <a class="back-link" onclick="showHome()">← Вернуться на главную</a>
+                <a class="back-link" onclick="showContact()">Написать ещё</a>
+            `;
+        };
+    </script>
+</body>
+</html>
